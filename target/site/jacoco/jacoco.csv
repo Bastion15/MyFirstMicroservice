@@ -1,0 +1,3 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+myFirstMicroservice,com.tsi.roland.obernauer.program,MyFirstMicroserviceApplication,9,6,0,0,3,3,2,1,2,1
+myFirstMicroservice,com.tsi.roland.obernauer.program,Actor,23,3,0,0,10,1,5,1,5,1

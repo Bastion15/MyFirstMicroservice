@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MyFirstMicroserviceApplication.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">myFirstMicroservice</a> &gt; <a href="index.source.html" class="el_package">com.tsi.roland.obernauer.program</a> &gt; <span class="el_source">MyFirstMicroserviceApplication.java</span></div><h1>MyFirstMicroserviceApplication.java</h1><pre class="source lang-java linenums">package com.tsi.roland.obernauer.program;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
+
+
+@CrossOrigin(origins = &quot;*&quot;)
+@SpringBootApplication
+@RestController
+@RequestMapping(&quot;/home&quot;)
+
+public class MyFirstMicroserviceApplication {
+
+	@Autowired
+	private ActorRepository actorRepository;
+
+
+
+	public static void main(String[] args) {
+<span class="nc" id="L22">		SpringApplication.run(MyFirstMicroserviceApplication.class, args);</span>
+<span class="nc" id="L23">	}</span>
+
+<span class="fc" id="L25">	public MyFirstMicroserviceApplication(ActorRepository actorRepository) {</span>
+<span class="fc" id="L26">		this.actorRepository = actorRepository;</span>
+<span class="fc" id="L27">	}</span>
+
+	@GetMapping(&quot;/ALL_Actors&quot;)
+	public @ResponseBody
+	Iterable&lt;Actor&gt;getAllActors(){
+<span class="nc" id="L32">		return actorRepository.findAll();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

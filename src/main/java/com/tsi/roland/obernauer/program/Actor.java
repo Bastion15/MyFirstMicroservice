@@ -18,13 +18,14 @@ public class Actor {
     //Attributes
         @Id
         @GeneratedValue(strategy= GenerationType.IDENTITY)
-         private int actor_id;
+        int actorId;
         String first_name;
         String last_name;
     //Constructors
-        public Actor(String first_name, String last_name){
+        public Actor(String first_name, String last_name, int actorId){
             this.first_name = first_name;
             this.last_name = last_name;
+            this.actorId = actorId;
         }
 
         public Actor(){}
@@ -45,5 +46,13 @@ public class Actor {
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;
+    }
+
+    public int getActorId() {
+        return actorId;
+    }
+
+    public void setActorId(int actorId) {
+        this.actorId = actorId;
     }
 }

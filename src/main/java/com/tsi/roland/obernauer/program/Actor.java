@@ -9,26 +9,27 @@ import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.stereotype.Repository;
 
 
-
 @Qualifier("actors")
 @Entity
 @Repository
 @Table(name = "actor")
 public class Actor {
     //Attributes
+
         @Id
         @GeneratedValue(strategy= GenerationType.IDENTITY)
-        int actorId;
+        int actor_id;
         String first_name;
         String last_name;
     //Constructors
-        public Actor(String first_name, String last_name, int actorId){
+        public Actor(String first_name, String last_name){
             this.first_name = first_name;
             this.last_name = last_name;
-            this.actorId = actorId;
         }
 
         public Actor(){}
+
+
     //Methods
     //getters/setters
 
@@ -48,11 +49,11 @@ public class Actor {
         this.last_name = last_name;
     }
 
-    public int getActorId() {
-        return actorId;
+    public int getActor_id() {
+        return actor_id;
     }
 
-    public void setActorId(int actorId) {
-        this.actorId = actorId;
+    public void setActor_id(int actor_id) {
+        this.actor_id = actor_id;
     }
 }

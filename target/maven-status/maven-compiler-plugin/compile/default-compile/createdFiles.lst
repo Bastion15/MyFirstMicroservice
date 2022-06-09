@@ -1,3 +1,7 @@
 com\tsi\roland\obernauer\program\ActorRepository.class
 com\tsi\roland\obernauer\program\MyFirstMicroserviceApplication.class
+com\tsi\roland\obernauer\program\CountryRepository.class
+com\tsi\roland\obernauer\program\CityRepository.class
+com\tsi\roland\obernauer\program\Country.class
 com\tsi\roland\obernauer\program\Actor.class
+com\tsi\roland\obernauer\program\City.class

@@ -9,16 +9,16 @@ import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.stereotype.Repository;
 
 
-
 @Qualifier(&quot;actors&quot;)
 @Entity
 @Repository
 @Table(name = &quot;actor&quot;)
 public class Actor {
     //Attributes
+
         @Id
         @GeneratedValue(strategy= GenerationType.IDENTITY)
-         private int actor_id;
+        int actor_id;
         String first_name;
         String last_name;
     //Constructors
@@ -27,24 +27,34 @@ public class Actor {
 <span class="nc" id="L27">            this.last_name = last_name;</span>
 <span class="nc" id="L28">        }</span>
 
-<span class="fc" id="L30">        public Actor(){}</span>
+<span class="nc" id="L30">        public Actor(){}</span>
+
+
     //Methods
     //getters/setters
 
     public String getFirst_name() {
-<span class="nc" id="L35">        return first_name;</span>
+<span class="nc" id="L37">        return first_name;</span>
     }
 
     public void setFirst_name(String first_name) {
-<span class="nc" id="L39">        this.first_name = first_name;</span>
-<span class="nc" id="L40">    }</span>
+<span class="nc" id="L41">        this.first_name = first_name;</span>
+<span class="nc" id="L42">    }</span>
 
     public String getLast_name() {
-<span class="nc" id="L43">        return last_name;</span>
+<span class="nc" id="L45">        return last_name;</span>
     }
 
     public void setLast_name(String last_name) {
-<span class="nc" id="L47">        this.last_name = last_name;</span>
-<span class="nc" id="L48">    }</span>
+<span class="nc" id="L49">        this.last_name = last_name;</span>
+<span class="nc" id="L50">    }</span>
+
+    public int getActor_id() {
+<span class="nc" id="L53">        return actor_id;</span>
+    }
+
+    public void setActor_id(int actor_id) {
+<span class="nc" id="L57">        this.actor_id = actor_id;</span>
+<span class="nc" id="L58">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

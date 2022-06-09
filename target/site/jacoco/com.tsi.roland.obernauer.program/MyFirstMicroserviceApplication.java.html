@@ -3,7 +3,12 @@
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
 
 
 @CrossOrigin(origins = &quot;*&quot;)
@@ -15,21 +20,145 @@ public class MyFirstMicroserviceApplication {
 
 	@Autowired
 	private ActorRepository actorRepository;
+	@Autowired
+	private CountryRepository countryRepository;
+	@Autowired
+	private CityRepository cityRepository;
 
 
 
 	public static void main(String[] args) {
-<span class="nc" id="L22">		SpringApplication.run(MyFirstMicroserviceApplication.class, args);</span>
-<span class="nc" id="L23">	}</span>
+<span class="nc" id="L31">		SpringApplication.run(MyFirstMicroserviceApplication.class, args);</span>
+<span class="nc" id="L32">	}</span>
 
-<span class="fc" id="L25">	public MyFirstMicroserviceApplication(ActorRepository actorRepository) {</span>
-<span class="fc" id="L26">		this.actorRepository = actorRepository;</span>
-<span class="fc" id="L27">	}</span>
+<span class="fc" id="L34">	public MyFirstMicroserviceApplication(ActorRepository actorRepository, CountryRepository countryRepository, CityRepository cityRepository) {</span>
+<span class="fc" id="L35">		this.actorRepository = actorRepository;</span>
+<span class="fc" id="L36">		this.countryRepository = countryRepository;</span>
+<span class="fc" id="L37">		this.cityRepository = cityRepository;</span>
+<span class="fc" id="L38">	}</span>
 
-	@GetMapping(&quot;/ALL_Actors&quot;)
+	@GetMapping(&quot;/allActors&quot;)
 	public @ResponseBody
 	Iterable&lt;Actor&gt;getAllActors(){
-<span class="nc" id="L32">		return actorRepository.findAll();</span>
+<span class="fc" id="L43">		return actorRepository.findAll();</span>
 	}
+
+
+	@PostMapping(&quot;/addNewActor&quot;)
+	String addNewActor(@RequestParam String first_name, @RequestParam String last_name) {
+<span class="nc" id="L49">		Actor a = new Actor (first_name, last_name);</span>
+<span class="nc" id="L50">		actorRepository.save(a);</span>
+<span class="nc" id="L51">		return &quot;Actor successfully added to the database&quot;;</span>
+	}
+
+
+	@PutMapping(&quot;/actor/{id}&quot;)
+	public ResponseEntity&lt;Actor&gt; updateActor(@PathVariable(value = &quot;id&quot;) int actor_id,
+												   @Valid @RequestBody Actor actorDetails) throws ResourceNotFoundException {
+<span class="nc" id="L58">		Actor actor = actorRepository.findById(actor_id)</span>
+<span class="nc" id="L59">				.orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Actor not found for this id :: &quot; + actor_id));</span>
+
+<span class="nc" id="L61">		actor.setLast_name(actorDetails.getLast_name());</span>
+<span class="nc" id="L62">		actor.setFirst_name(actorDetails.getFirst_name());</span>
+<span class="nc" id="L63">		final Actor updatedActor = actorRepository.save(actor);</span>
+<span class="nc" id="L64">		return ResponseEntity.ok(updatedActor);</span>
+	}
+
+	@DeleteMapping(&quot;/actor/{id}&quot;)
+	public String deleteActor(@PathVariable(&quot;id&quot;) int actor_id)
+			throws ResourceNotFoundException {
+<span class="nc" id="L70">		Actor actor = actorRepository.findById(actor_id)</span>
+<span class="nc" id="L71">				.orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Actor not found for this id :: &quot; + actor_id));</span>
+<span class="nc" id="L72">		actorRepository.delete(actor);</span>
+<span class="nc" id="L73">		return &quot;Removed from database&quot;;</span>
+	}
+
+	///////////////////////////////////////////////// Country /////////////////////////////////////////////////////////
+
+	@GetMapping(&quot;/allCountries&quot;)
+	public @ResponseBody
+	Iterable&lt;Country&gt;getAllCountries(){
+<span class="nc" id="L81">		return countryRepository.findAll();</span>
+	}
+
+	@PostMapping(&quot;/addNewCountry&quot;)
+	String addNewCountry(@RequestParam String country) {
+<span class="nc" id="L86">		Country a = new Country (country);</span>
+<span class="nc" id="L87">		countryRepository.save(a);</span>
+<span class="nc" id="L88">		return &quot;Country successfully added to the database&quot;;</span>
+	}
+
+	@PutMapping(&quot;/country/{id}&quot;)
+	public ResponseEntity&lt;Country&gt; updateCountry(@PathVariable(value = &quot;id&quot;) int country_id, @Valid @RequestBody Country countryDetails) throws ResourceNotFoundException {
+<span class="nc" id="L93">		Country country = countryRepository.findById(country_id)</span>
+<span class="nc" id="L94">				.orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Country not found for this id :: &quot; + country_id));</span>
+
+<span class="nc" id="L96">		country.setCountry(countryDetails.getCountry());</span>
+<span class="nc" id="L97">		final Country updatedCountry = countryRepository.save(country);</span>
+<span class="nc" id="L98">		return ResponseEntity.ok(updatedCountry);</span>
+	}
+
+	@DeleteMapping(&quot;/country/{id}&quot;)
+	public String deleteCountry(@PathVariable(&quot;id&quot;) int country_id)
+			throws ResourceNotFoundException {
+<span class="nc" id="L104">		Country country = countryRepository.findById(country_id)</span>
+<span class="nc" id="L105">				.orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Country not found for this id :: &quot; + country_id));</span>
+<span class="nc" id="L106">		countryRepository.delete(country);</span>
+<span class="nc" id="L107">		return &quot;Removed from database&quot;;</span>
+	}
+
+
+	/////////////////////////////////////////////////// CITY /////////////////////////////////////////////////////////
+	@GetMapping(&quot;/allCities&quot;)
+	public @ResponseBody
+	Iterable&lt;City&gt;getAllCities(){
+<span class="nc" id="L115">		return cityRepository.findAll();</span>
+	}
+
+	@PostMapping(&quot;/addNewCity&quot;)
+	String addNewCity(@RequestParam String city) {
+<span class="nc" id="L120">		City a = new City (city);</span>
+<span class="nc" id="L121">		cityRepository.save(a);</span>
+<span class="nc" id="L122">		return &quot;City successfully added to the database&quot;;</span>
+	}
+
+	@PutMapping(&quot;/city/{id}&quot;)
+	public ResponseEntity&lt;City&gt; updateCity(@PathVariable(value = &quot;id&quot;) int city_id, @Valid @RequestBody City cityDetails) throws ResourceNotFoundException {
+<span class="nc" id="L127">		City city = cityRepository.findById(city_id)</span>
+<span class="nc" id="L128">				.orElseThrow(() -&gt; new ResourceNotFoundException(&quot;City not found for this id :: &quot; + city_id));</span>
+
+<span class="nc" id="L130">		city.setCity(cityDetails.getCity());</span>
+<span class="nc" id="L131">		final City updatedCity = cityRepository.save(city);</span>
+<span class="nc" id="L132">		return ResponseEntity.ok(updatedCity);</span>
+	}
+
+	@DeleteMapping(&quot;/city/{id}&quot;)
+	public String deleteCity(@PathVariable(&quot;id&quot;) int city_id)
+			throws ResourceNotFoundException {
+<span class="nc" id="L138">		City city = cityRepository.findById(city_id)</span>
+<span class="nc" id="L139">				.orElseThrow(() -&gt; new ResourceNotFoundException(&quot;City not found for this id :: &quot; + city_id));</span>
+<span class="nc" id="L140">		cityRepository.delete(city);</span>
+<span class="nc" id="L141">		return &quot;Removed from database&quot;;</span>
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

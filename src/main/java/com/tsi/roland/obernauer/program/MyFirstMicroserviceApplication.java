@@ -31,9 +31,10 @@ public class MyFirstMicroserviceApplication {
 		SpringApplication.run(MyFirstMicroserviceApplication.class, args);
 	}
 
-	public MyFirstMicroserviceApplication(ActorRepository actorRepository, CountryRepository countryRepository) {
+	public MyFirstMicroserviceApplication(ActorRepository actorRepository, CountryRepository countryRepository, CityRepository cityRepository) {
 		this.actorRepository = actorRepository;
 		this.countryRepository = countryRepository;
+		this.cityRepository = cityRepository;
 	}
 
 	@GetMapping("/allActors")

@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca463e4c-758e-4b5c-9e19-1cd40a756c0d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ca463e4c-758e-4b5c-9e19-1cd40a756c0d" name="Changes" comment="first commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tsi/roland/obernauer/program/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tsi/roland/obernauer/program/Actor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tsi/roland/obernauer/program/ActorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tsi/roland/obernauer/program/ActorRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tsi/roland/obernauer/program/MyFirstMicroserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tsi/roland/obernauer/program/MyFirstMicroserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/tsi/roland/obernauer/program/MyFirstMicroserviceApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tsi/roland/obernauer/program/Actor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tsi/roland/obernauer/program/Actor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tsi/roland/obernauer/program/MyFirstMicroserviceApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tsi/roland/obernauer/program/MyFirstMicroserviceApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/tsi/roland/obernauer/program/MyFirstMicroserviceApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/tsi/roland/obernauer/program/MockitoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/tsi/roland/obernauer/program/MockitoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,11 +28,15 @@
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
     <option name="myId2Visible">
       <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
@@ -71,10 +68,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "C:/Users/obern/IdeaProjects/program",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
-  <component name="RunManager" selected="Cucumber Java.Scenario: I successfully add an actor to the table">
+  <component name="RunManager" selected="Application.com.tsi.roland.obernauer.program.MyFirstMicroserviceApplication">
     <configuration name="com.tsi.roland.obernauer.program.MyFirstMicroserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.tsi.roland.obernauer.program.MyFirstMicroserviceApplication" />
       <module name="program" />
@@ -127,9 +127,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.com.tsi.roland.obernauer.program.MyFirstMicroserviceApplication" />
         <item itemvalue="Cucumber Java.Scenario: I successfully add an actor to the table" />
         <item itemvalue="Cucumber Java.Feature: Add a new actor" />
-        <item itemvalue="Application.com.tsi.roland.obernauer.program.MyFirstMicroserviceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -142,6 +142,14 @@
       <option name="presentableId" value="Default" />
       <updated>1654505123033</updated>
     </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <created>1654686512703</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1654686512703</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,5 +162,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
   </component>
 </project>

@@ -27,15 +27,113 @@ public class MockitoTest {
 
     @BeforeEach
     void setUp() {
-         microServiceApp = new MyFirstMicroserviceApplication(actorRepository, countryRepository, cityRepository);
+        microServiceApp = new MyFirstMicroserviceApplication(actorRepository, countryRepository, cityRepository);
     }
 
     @Test
-    public void getAllActors()
-    {
+    public void getAllActors() {
         microServiceApp.getAllActors();
         verify(actorRepository).findAll();
     }
 
+    @Test
+    public void addActor() {
+        Actor newActor = new Actor("Mock", "Actor");
+        String expected = "Actor successfully added to the database";
+        String actual = microServiceApp.addNewActor(newActor.getFirst_name(), newActor.getLast_name());
+
+        ArgumentCaptor<Actor> actorArgumentCaptor = ArgumentCaptor.forClass(Actor.class);
+
+        verify(actorRepository).save(actorArgumentCaptor.capture());
+
+        actorArgumentCaptor.getValue();
+
+        Assertions.assertEquals(expected, actual, "Adding actor to the database was unsuccessful");
+    }
+
+    @Test
+    public void updateActor() {
+        final Actor actor = new Actor("Mock", "Actor");
+        Optional<Actor> optionalActor = Optional.of(actor);
+        Mockito.when(actorRepository.findById(1)).thenReturn(optionalActor);
+        Actor update = new Actor("Test", "Actor");
+        String actual = microServiceApp.updateActor(1, update);
+        String expected = "Test Actor";
+        Assertions.assertEquals(actual, expected, "Updating actor was not successful");
+    }
+
+    @Test
+    public void deleteActor() {
+        final Actor actor = new Actor("Mock", "Actor");
+        Optional<Actor> optionalActor = Optional.of(actor);
+        Mockito.when(actorRepository.findById(1)).thenReturn(optionalActor);
+        String actual = microServiceApp.deleteActor(1);
+        Mockito.verify(actorRepository).delete(actor);
+        Assertions.assertEquals("Actor successfully removed from the database", actual, "Actor was not removed from the database");
+    }
+
+
+/////////////////////////////////////////////////////////// Country ////////////////////////////////////////////////////////////////
+
+    @Test
+    public void getAllCities() {
+        microServiceApp.getAllCities();
+        verify(cityRepository).findAll();
+    }
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

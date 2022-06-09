@@ -53,7 +53,7 @@ public class MyFirstMicroserviceApplication {
 
 
 	@PutMapping("/actor/{id}")
-	public ResponseEntity<Actor> updateActor(@PathVariable(value = "id") int actor_id,
+	public String updateActor(@PathVariable(value = "id") int actor_id,
 												   @Valid @RequestBody Actor actorDetails) throws ResourceNotFoundException {
 		Actor actor = actorRepository.findById(actor_id)
 				.orElseThrow(() -> new ResourceNotFoundException("Actor not found for this id :: " + actor_id));
@@ -61,7 +61,7 @@ public class MyFirstMicroserviceApplication {
 		actor.setLast_name(actorDetails.getLast_name());
 		actor.setFirst_name(actorDetails.getFirst_name());
 		final Actor updatedActor = actorRepository.save(actor);
-		return ResponseEntity.ok(updatedActor);
+		return updatedActor.toString();
 	}
 
 	@DeleteMapping("/actor/{id}")
@@ -70,7 +70,7 @@ public class MyFirstMicroserviceApplication {
 		Actor actor = actorRepository.findById(actor_id)
 				.orElseThrow(() -> new ResourceNotFoundException("Actor not found for this id :: " + actor_id));
 		actorRepository.delete(actor);
-		return "Removed from database";
+		return "Actor successfully removed from the database";
 	}
 
 	///////////////////////////////////////////////// Country /////////////////////////////////////////////////////////

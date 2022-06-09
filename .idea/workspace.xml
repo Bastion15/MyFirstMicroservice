@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca463e4c-758e-4b5c-9e19-1cd40a756c0d" name="Changes" comment="first commit">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tsi/roland/obernauer/program/MyFirstMicroserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tsi/roland/obernauer/program/MyFirstMicroserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/tsi/roland/obernauer/program/MockitoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/tsi/roland/obernauer/program/MockitoTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="ca463e4c-758e-4b5c-9e19-1cd40a756c0d" name="Changes" comment="started mockito" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654686512703</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="started mockito">
+      <created>1654783315422</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654783315422</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -165,6 +168,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+    <MESSAGE value="started mockito" />
+    <option name="LAST_COMMIT_MESSAGE" value="started mockito" />
   </component>
 </project>

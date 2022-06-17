@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
+import java.util.Optional;
 
 
 @CrossOrigin(origins = "*")
@@ -43,6 +43,13 @@ public class MyFirstMicroserviceApplication {
 		return actorRepository.findAll();
 	}
 
+	@GetMapping("/actor/{actor_id}")
+	public @ResponseBody
+	Optional<Actor> getActor_id(@PathVariable("actor_id")int actor_id)
+	{
+		return actorRepository.findById(actor_id);
+	}
+
 
 	@PostMapping("/addNewActor")
 	String addNewActor(@RequestParam String first_name, @RequestParam String last_name) {
@@ -53,24 +60,21 @@ public class MyFirstMicroserviceApplication {
 
 
 	@PutMapping("/actor/{id}")
-	public String updateActor(@PathVariable(value = "id") int actor_id,
-												   @Valid @RequestBody Actor actorDetails) throws ResourceNotFoundException {
-		Actor actor = actorRepository.findById(actor_id)
-				.orElseThrow(() -> new ResourceNotFoundException("Actor not found for this id :: " + actor_id));
-
-		actor.setLast_name(actorDetails.getLast_name());
-		actor.setFirst_name(actorDetails.getFirst_name());
-		final Actor updatedActor = actorRepository.save(actor);
-		return updatedActor.toString();
+	@ResponseBody
+	public ResponseEntity<Actor> updateActor(@RequestParam Integer id, @RequestParam String first_name, @RequestParam String last_name){
+		Actor updateActor = actorRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Actor does not exit with id: " + id));
+		updateActor.setFirst_name(first_name);
+		updateActor.setLast_name(last_name);
+		actorRepository.save(updateActor);
+		return ResponseEntity.ok(updateActor);
 	}
 
 	@DeleteMapping("/actor/{id}")
-	public String deleteActor(@PathVariable("id") int actor_id)
-			throws ResourceNotFoundException {
-		Actor actor = actorRepository.findById(actor_id)
-				.orElseThrow(() -> new ResourceNotFoundException("Actor not found for this id :: " + actor_id));
-		actorRepository.delete(actor);
-		return "Actor successfully removed from the database";
+	public ResponseEntity<Actor> deleteActor(@RequestParam Integer id){
+		Actor deleteActor = actorRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Actor does not exit with id: " + id));
+		actorRepository.deleteById(id);
+		return ResponseEntity.ok(deleteActor);
+
 	}
 
 	///////////////////////////////////////////////// Country /////////////////////////////////////////////////////////
@@ -81,6 +85,13 @@ public class MyFirstMicroserviceApplication {
 		return countryRepository.findAll();
 	}
 
+	@GetMapping("/country/{country_id}")
+	public @ResponseBody
+	Optional<Country> getCountry_id(@PathVariable("country_id")int country_id)
+	{
+		return countryRepository.findById(country_id);
+	}
+
 	@PostMapping("/addNewCountry")
 	String addNewCountry(@RequestParam String country) {
 		Country a = new Country (country);
@@ -89,22 +100,15 @@ public class MyFirstMicroserviceApplication {
 	}
 
 	@PutMapping("/country/{id}")
-	public ResponseEntity<Country> updateCountry(@PathVariable(value = "id") int country_id, @Valid @RequestBody Country countryDetails) throws ResourceNotFoundException {
-		Country country = countryRepository.findById(country_id)
-				.orElseThrow(() -> new ResourceNotFoundException("Country not found for this id :: " + country_id));
-
-		country.setCountry(countryDetails.getCountry());
-		final Country updatedCountry = countryRepository.save(country);
-		return ResponseEntity.ok(updatedCountry);
+	@ResponseBody
+	public String updateCountry(@RequestParam String country){
+		return "Country was successfully added to the database";
 	}
 
 	@DeleteMapping("/country/{id}")
-	public String deleteCountry(@PathVariable("id") int country_id)
-			throws ResourceNotFoundException {
-		Country country = countryRepository.findById(country_id)
-				.orElseThrow(() -> new ResourceNotFoundException("Country not found for this id :: " + country_id));
-		countryRepository.delete(country);
-		return "Removed from database";
+	public String deleteCountry(@PathVariable("id") int country_id){;
+		countryRepository.deleteById(country_id);
+		return "Country successfully removed from the database";
 	}
 
 
@@ -115,6 +119,13 @@ public class MyFirstMicroserviceApplication {
 		return cityRepository.findAll();
 	}
 
+	@GetMapping("/city/{city_id}")
+	public @ResponseBody
+	Optional<City> getCity_id(@PathVariable("city_id")int city_id)
+	{
+		return cityRepository.findById(city_id);
+	}
+
 	@PostMapping("/addNewCity")
 	String addNewCity(@RequestParam String city) {
 		City a = new City (city);
@@ -123,22 +134,15 @@ public class MyFirstMicroserviceApplication {
 	}
 
 	@PutMapping("/city/{id}")
-	public ResponseEntity<City> updateCity(@PathVariable(value = "id") int city_id, @Valid @RequestBody City cityDetails) throws ResourceNotFoundException {
-		City city = cityRepository.findById(city_id)
-				.orElseThrow(() -> new ResourceNotFoundException("City not found for this id :: " + city_id));
-
-		city.setCity(cityDetails.getCity());
-		final City updatedCity = cityRepository.save(city);
-		return ResponseEntity.ok(updatedCity);
+	@ResponseBody
+	public String updateCity(@RequestParam String city){
+		return "City was successfully added to the database";
 	}
 
 	@DeleteMapping("/city/{id}")
-	public String deleteCity(@PathVariable("id") int city_id)
-			throws ResourceNotFoundException {
-		City city = cityRepository.findById(city_id)
-				.orElseThrow(() -> new ResourceNotFoundException("City not found for this id :: " + city_id));
-		cityRepository.delete(city);
-		return "Removed from database";
+	public String deleteCity(@PathVariable("id") int city_id){
+        cityRepository.deleteById(city_id);
+        return "City successfully deleted from the database";
 	}
 
 }

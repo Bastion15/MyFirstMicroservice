@@ -41,13 +41,9 @@ public class MockitoTest {
         Actor newActor = new Actor("Mock", "Actor");
         String expected = "Actor successfully added to the database";
         String actual = microServiceApp.addNewActor(newActor.getFirst_name(), newActor.getLast_name());
-
         ArgumentCaptor<Actor> actorArgumentCaptor = ArgumentCaptor.forClass(Actor.class);
-
         verify(actorRepository).save(actorArgumentCaptor.capture());
-
         actorArgumentCaptor.getValue();
-
         Assertions.assertEquals(expected, actual, "Adding actor to the database was unsuccessful");
     }
 
@@ -57,23 +53,59 @@ public class MockitoTest {
         Optional<Actor> optionalActor = Optional.of(actor);
         Mockito.when(actorRepository.findById(1)).thenReturn(optionalActor);
         Actor update = new Actor("Test", "Actor");
-        String actual = microServiceApp.updateActor(1, update);
-        String expected = "Test Actor";
-        Assertions.assertEquals(actual, expected, "Updating actor was not successful");
+        String actual = microServiceApp.addNewActor("term","terme");
+        Assertions.assertEquals("Test Actor",actual, "Updating actor was not successful");
     }
 
     @Test
     public void deleteActor() {
         final Actor actor = new Actor("Mock", "Actor");
-        Optional<Actor> optionalActor = Optional.of(actor);
-        Mockito.when(actorRepository.findById(1)).thenReturn(optionalActor);
-        String actual = microServiceApp.deleteActor(1);
+        Mockito.when(actorRepository.findById(1)).thenReturn(Optional.of(actor));
+        String actual = String.valueOf(microServiceApp.deleteActor(1));
         Mockito.verify(actorRepository).delete(actor);
-        Assertions.assertEquals("Actor successfully removed from the database", actual, "Actor was not removed from the database");
+        Assertions.assertEquals("Actor successfully removed from the database", actual, "Removing actor from the database was unsuccessful");
     }
 
 
 /////////////////////////////////////////////////////////// Country ////////////////////////////////////////////////////////////////
+
+    @Test
+    public void getAllCountries() {
+        microServiceApp.getAllCountries();
+        verify(countryRepository).findAll();
+    }
+
+    @Test
+    public void addCountry() {
+        Country newCountry = new Country("Boraborabor");
+        String expected = "Country successfully added to the database";
+        String actual = microServiceApp.addNewCountry(newCountry.getCountry());
+        ArgumentCaptor<Country> countryArgumentCaptor = ArgumentCaptor.forClass(Country.class);
+        verify(countryRepository).save(countryArgumentCaptor.capture());
+        countryArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "Adding country to the database was unsuccessful");
+    }
+
+    @Test
+    public void updateCountry() {
+        final Country country = new Country("Mock");
+        Optional<Country> optionalCountry = Optional.of(country);
+        Mockito.when(countryRepository.findById(1)).thenReturn(optionalCountry);
+        Country update = new Country("Test");
+        String actual = String.valueOf(microServiceApp.updateCountry("update"));
+        Assertions.assertEquals("Test",actual, "Updating Country was not successful");
+    }
+    @Test
+    public void deleteCountry() {
+        final Country country = new Country("Robarobarob");
+        Optional<Country> optionalCountry = Optional.of(country);
+        Mockito.when(countryRepository.findById(1)).thenReturn(optionalCountry);
+        String actual = microServiceApp.deleteCountry(1);
+        Mockito.verify(countryRepository).delete(country);
+        Assertions.assertEquals("Country successfully removed from the database", actual, "Removing country from the database was unsuccessful");
+    }
+
+    ////////////////////////////////////////////////////// City ////////////////////////////////////////////////////////
 
     @Test
     public void getAllCities() {
@@ -81,6 +113,35 @@ public class MockitoTest {
         verify(cityRepository).findAll();
     }
 
+    @Test
+    public void addCity() {
+        City newCity = new City("Boraborabor");
+        String expected = "City successfully added to the database";
+        String actual = microServiceApp.addNewCity(newCity.getCity());
+        ArgumentCaptor<City> cityArgumentCaptor = ArgumentCaptor.forClass(City.class);
+        verify(cityRepository).save(cityArgumentCaptor.capture());
+        cityArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "Adding city to the database was unsuccessful");
+    }
+
+    @Test
+    public void updateCity() {
+        final City city = new City("Mock");
+        Optional<City> optionalCity = Optional.of(city);
+        Mockito.when(cityRepository.findById(1)).thenReturn(optionalCity);
+        City update = new City("Test");
+        String actual = String.valueOf(microServiceApp.updateCity("Test"));
+        Assertions.assertEquals("Test",actual , "Updating City was not successful");
+    }
+    @Test
+    public void deleteCity() {
+        final City city = new City("Robarobarob");
+        Optional<City> optionalCity = Optional.of(city);
+        Mockito.when(cityRepository.findById(1)).thenReturn(optionalCity);
+        String actual = microServiceApp.deleteCity(1);
+        Mockito.verify(cityRepository).delete(city);
+        Assertions.assertEquals("City successfully removed from the database", actual, "Removing city from the database was unsuccessful");
+    }
 
 }
 

@@ -24,9 +24,9 @@ public class Country {
 
     public Country(String country) {
         this.country = country;
-
     }
 
+    public Country(){}
 
     public  int getCountry_id() {
         return country_id;
@@ -44,6 +44,5 @@ public class Country {
         this.country = country;
     }
 
-    public Country(){}
 
 }

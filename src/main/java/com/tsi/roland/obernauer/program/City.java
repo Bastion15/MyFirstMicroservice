@@ -19,6 +19,13 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int city_id;
+    String city;
+
+    public City(String city){
+        this.city = city;
+    }
+
+    public City(){}
 
     public int getCity_id() {
         return city_id;
@@ -36,8 +43,6 @@ public class City {
         this.city = city;
     }
 
-    String city;
 
-    public City(String city){}
 
 }
